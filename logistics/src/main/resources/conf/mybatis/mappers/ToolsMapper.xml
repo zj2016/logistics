@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bs.tenement.dao.ToolsMapper">
+  <resultMap id="BaseResultMap" type="com.bs.tenement.bean.Tools">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="t_no" jdbcType="VARCHAR" property="tNo" />
+    <result column="y_type" jdbcType="VARCHAR" property="yType" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="max_weight" jdbcType="INTEGER" property="maxWeight" />
+    <result column="max_bulk" jdbcType="INTEGER" property="maxBulk" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, t_no, y_type, num, max_weight, max_bulk
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tools
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tools
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bs.tenement.bean.Tools">
+    insert into tools (id, t_no, y_type, 
+      num, max_weight, max_bulk
+      )
+    values (#{id,jdbcType=INTEGER}, #{tNo,jdbcType=VARCHAR}, #{yType,jdbcType=VARCHAR}, 
+      #{num,jdbcType=INTEGER}, #{maxWeight,jdbcType=INTEGER}, #{maxBulk,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bs.tenement.bean.Tools">
+    insert into tools
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tNo != null">
+        t_no,
+      </if>
+      <if test="yType != null">
+        y_type,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="maxWeight != null">
+        max_weight,
+      </if>
+      <if test="maxBulk != null">
+        max_bulk,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tNo != null">
+        #{tNo,jdbcType=VARCHAR},
+      </if>
+      <if test="yType != null">
+        #{yType,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="maxWeight != null">
+        #{maxWeight,jdbcType=INTEGER},
+      </if>
+      <if test="maxBulk != null">
+        #{maxBulk,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bs.tenement.bean.Tools">
+    update tools
+    <set>
+      <if test="tNo != null">
+        t_no = #{tNo,jdbcType=VARCHAR},
+      </if>
+      <if test="yType != null">
+        y_type = #{yType,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="maxWeight != null">
+        max_weight = #{maxWeight,jdbcType=INTEGER},
+      </if>
+      <if test="maxBulk != null">
+        max_bulk = #{maxBulk,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bs.tenement.bean.Tools">
+    update tools
+    set t_no = #{tNo,jdbcType=VARCHAR},
+      y_type = #{yType,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
+      max_weight = #{maxWeight,jdbcType=INTEGER},
+      max_bulk = #{maxBulk,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.bs.logistics.bean.Tools">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="t_no" jdbcType="VARCHAR" property="tNo" />
+    <result column="y_type" jdbcType="VARCHAR" property="yType" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="max_weight" jdbcType="INTEGER" property="maxWeight" />
+    <result column="max_bulk" jdbcType="INTEGER" property="maxBulk" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, t_no, y_type, num, max_weight, max_bulk
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tools
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tools
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bs.logistics.bean.Tools">
+    insert into tools (id, t_no, y_type, 
+      num, max_weight, max_bulk
+      )
+    values (#{id,jdbcType=INTEGER}, #{tNo,jdbcType=VARCHAR}, #{yType,jdbcType=VARCHAR}, 
+      #{num,jdbcType=INTEGER}, #{maxWeight,jdbcType=INTEGER}, #{maxBulk,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bs.logistics.bean.Tools">
+    insert into tools
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tNo != null">
+        t_no,
+      </if>
+      <if test="yType != null">
+        y_type,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="maxWeight != null">
+        max_weight,
+      </if>
+      <if test="maxBulk != null">
+        max_bulk,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tNo != null">
+        #{tNo,jdbcType=VARCHAR},
+      </if>
+      <if test="yType != null">
+        #{yType,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="maxWeight != null">
+        #{maxWeight,jdbcType=INTEGER},
+      </if>
+      <if test="maxBulk != null">
+        #{maxBulk,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bs.logistics.bean.Tools">
+    update tools
+    <set>
+      <if test="tNo != null">
+        t_no = #{tNo,jdbcType=VARCHAR},
+      </if>
+      <if test="yType != null">
+        y_type = #{yType,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="maxWeight != null">
+        max_weight = #{maxWeight,jdbcType=INTEGER},
+      </if>
+      <if test="maxBulk != null">
+        max_bulk = #{maxBulk,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bs.logistics.bean.Tools">
+    update tools
+    set t_no = #{tNo,jdbcType=VARCHAR},
+      y_type = #{yType,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
+      max_weight = #{maxWeight,jdbcType=INTEGER},
+      max_bulk = #{maxBulk,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

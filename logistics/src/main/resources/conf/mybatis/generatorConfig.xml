@@ -49,15 +49,15 @@
         </javaModelGenerator>
           
         <!-- 生成mapxml文件 -->  
-        <sqlMapGenerator targetPackage="conf"  
-            targetProject="H:/GIT" >  
+        <sqlMapGenerator targetPackage="conf/mybatis/mappers"  
+            targetProject="H:/GIT/logistics/logistics/src/main/resources" >  
             <!-- 是否在当前路径下新加一层schema,eg：fase路径cn.ffcs.test.domain"， true:cn.ffcs.test.domain".[schemaName] -->  
             <property name="enableSubPackages" value="false" />  
         </sqlMapGenerator>  
           
         <!-- 生成mapxml对应client，也就是接口dao -->      
         <javaClientGenerator targetPackage="com.bs.tenement.dao"  
-            targetProject="H:/GIT/tenement/tenement/src/main/java" type="XMLMAPPER" >  
+            targetProject="H:/GIT/logistics/logistics/src/main/java" type="XMLMAPPER" >  
             <!-- 是否在当前路径下新加一层schema,eg：fase路径cn.ffcs.test.domain"， true:cn.ffcs.test.domain".[schemaName] -->  
             <property name="enableSubPackages" value="false" />  
         </javaClientGenerator>  
@@ -82,30 +82,21 @@
             enableUpdateByExample="false">  
         </table>   -->
         
-        <table schema="tenement" tableName="owner"  
-            domainObjectName="Owner" enableCountByExample="false"  
+        <table schema="logistics" tableName="orderinfo"  
+            domainObjectName="Orderinfo" enableCountByExample="false"  
             enableDeleteByExample="false" enableSelectByExample="false"  
             enableUpdateByExample="false">  
         </table> 
-        <table schema="tenement" tableName="house"  
-            domainObjectName="House" enableCountByExample="false"  
+        <table schema="logistics" tableName="way"  
+            domainObjectName="Way" enableCountByExample="false"  
             enableDeleteByExample="false" enableSelectByExample="false"  
             enableUpdateByExample="false">  
         </table> 
-        <table schema="tenement" tableName="pay"  
-            domainObjectName="Pay" enableCountByExample="false"  
+        <table schema="logistics" tableName="tools"  
+            domainObjectName="Tools" enableCountByExample="false"  
             enableDeleteByExample="false" enableSelectByExample="false"  
             enableUpdateByExample="false">  
         </table> 
-        <table schema="tenement" tableName="service"  
-            domainObjectName="Service" enableCountByExample="false"  
-            enableDeleteByExample="false" enableSelectByExample="false"  
-            enableUpdateByExample="false">  
-        </table> 
-        <table schema="tenement" tableName="complain"  
-            domainObjectName="Complain" enableCountByExample="false"  
-            enableDeleteByExample="false" enableSelectByExample="false"  
-            enableUpdateByExample="false">  
-        </table> 
+        
     </context>  
 </generatorConfiguration>  
