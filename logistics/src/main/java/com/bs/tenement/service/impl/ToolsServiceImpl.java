@@ -6,41 +6,47 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bs.tenement.bean.Pay;
-import com.bs.tenement.dao.PayMapper;
-import com.bs.tenement.service.PayService;
+import com.bs.tenement.bean.Tools;
+import com.bs.tenement.dao.ToolsMapper;
+import com.bs.tenement.service.ToolsService;
 
 @Service
-public class PayServiceImpl implements PayService{
+public class ToolsServiceImpl implements ToolsService{
 
 	@Autowired
-	private PayMapper payMapper;
+	private ToolsMapper toolMapper;
 	
-	public int add(Pay t) {
+	@Override
+	public int add(Tools t) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	public int update(Pay t) {
+	@Override
+	public int update(Tools t) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	@Override
 	public int remove(String id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	public Pay get(String id) {
+	@Override
+	public Tools get(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public List<Pay> getList(Map<String, Object> params) {
+	@Override
+	public List<Tools> getList(Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public int getCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		return 0;

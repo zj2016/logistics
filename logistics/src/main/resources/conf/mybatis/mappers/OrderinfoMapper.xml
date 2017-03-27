@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bs.tenement.dao.OrderinfoMapper">
+
   <resultMap id="BaseResultMap" type="com.bs.tenement.bean.Orderinfo">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="o_id" jdbcType="VARCHAR" property="oId" />
@@ -19,20 +20,60 @@
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="create_time" jdbcType="INTEGER" property="createTime" />
   </resultMap>
+  
   <sql id="Base_Column_List">
     id, o_id, j_name, j_phone, j_addr, s_name, s_phone, s_addr, w_desc, w_type, w_weight, 
     w_bulk, y_type, price, status, create_time
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  
+  <select id="select" parameterType="String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from orderinfo
-    where id = #{id,jdbcType=INTEGER}
+    where o_id = #{oId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  
+  <select id="selectList" parameterType="Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from orderinfo
+    <where>
+    	<if test="yType != null">
+        y_type = #{yType,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null">
+        and status = #{status,jdbcType=INTEGER}
+      </if>
+      <if test="oId != null">
+        and o_id = #{oId,jdbcType=VARCHAR}
+      </if>
+    </where>
+    limit #{offset}, #{limit}
+    order by create_time desc
+  </select>
+  
+  <select id="selectCount" parameterType="Map" resultType="int">
+    select 
+    count(*)
+    from orderinfo
+    <where>
+    	<if test="yType != null">
+        y_type = #{yType,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null">
+        and status = #{status,jdbcType=INTEGER}
+      </if>
+      <if test="oId != null">
+        and o_id = #{oId,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  
+  <delete id="delete" parameterType="String">
     delete from orderinfo
-    where id = #{id,jdbcType=INTEGER}
+    where o_id = #{oId,jdbcType=VARCHAR}
   </delete>
+  
   <insert id="insert" parameterType="com.bs.tenement.bean.Orderinfo">
     insert into orderinfo (id, o_id, j_name, 
       j_phone, j_addr, s_name, 
@@ -47,115 +88,10 @@
       #{yType,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
       #{createTime,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.bs.tenement.bean.Orderinfo">
-    insert into orderinfo
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="oId != null">
-        o_id,
-      </if>
-      <if test="jName != null">
-        j_name,
-      </if>
-      <if test="jPhone != null">
-        j_phone,
-      </if>
-      <if test="jAddr != null">
-        j_addr,
-      </if>
-      <if test="sName != null">
-        s_name,
-      </if>
-      <if test="sPhone != null">
-        s_phone,
-      </if>
-      <if test="sAddr != null">
-        s_addr,
-      </if>
-      <if test="wDesc != null">
-        w_desc,
-      </if>
-      <if test="wType != null">
-        w_type,
-      </if>
-      <if test="wWeight != null">
-        w_weight,
-      </if>
-      <if test="wBulk != null">
-        w_bulk,
-      </if>
-      <if test="yType != null">
-        y_type,
-      </if>
-      <if test="price != null">
-        price,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="oId != null">
-        #{oId,jdbcType=VARCHAR},
-      </if>
-      <if test="jName != null">
-        #{jName,jdbcType=VARCHAR},
-      </if>
-      <if test="jPhone != null">
-        #{jPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="jAddr != null">
-        #{jAddr,jdbcType=VARCHAR},
-      </if>
-      <if test="sName != null">
-        #{sName,jdbcType=VARCHAR},
-      </if>
-      <if test="sPhone != null">
-        #{sPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="sAddr != null">
-        #{sAddr,jdbcType=VARCHAR},
-      </if>
-      <if test="wDesc != null">
-        #{wDesc,jdbcType=VARCHAR},
-      </if>
-      <if test="wType != null">
-        #{wType,jdbcType=VARCHAR},
-      </if>
-      <if test="wWeight != null">
-        #{wWeight,jdbcType=INTEGER},
-      </if>
-      <if test="wBulk != null">
-        #{wBulk,jdbcType=INTEGER},
-      </if>
-      <if test="yType != null">
-        #{yType,jdbcType=VARCHAR},
-      </if>
-      <if test="price != null">
-        #{price,jdbcType=INTEGER},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bs.tenement.bean.Orderinfo">
+  
+  <update id="update" parameterType="com.bs.tenement.bean.Orderinfo">
     update orderinfo
     <set>
-      <if test="oId != null">
-        o_id = #{oId,jdbcType=VARCHAR},
-      </if>
       <if test="jName != null">
         j_name = #{jName,jdbcType=VARCHAR},
       </if>
@@ -195,248 +131,8 @@
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=INTEGER},
-      </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where o_id = #{oId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bs.tenement.bean.Orderinfo">
-    update orderinfo
-    set o_id = #{oId,jdbcType=VARCHAR},
-      j_name = #{jName,jdbcType=VARCHAR},
-      j_phone = #{jPhone,jdbcType=VARCHAR},
-      j_addr = #{jAddr,jdbcType=VARCHAR},
-      s_name = #{sName,jdbcType=VARCHAR},
-      s_phone = #{sPhone,jdbcType=VARCHAR},
-      s_addr = #{sAddr,jdbcType=VARCHAR},
-      w_desc = #{wDesc,jdbcType=VARCHAR},
-      w_type = #{wType,jdbcType=VARCHAR},
-      w_weight = #{wWeight,jdbcType=INTEGER},
-      w_bulk = #{wBulk,jdbcType=INTEGER},
-      y_type = #{yType,jdbcType=VARCHAR},
-      price = #{price,jdbcType=INTEGER},
-      status = #{status,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.bs.logistics.bean.Orderinfo">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="o_id" jdbcType="VARCHAR" property="oId" />
-    <result column="j_name" jdbcType="VARCHAR" property="jName" />
-    <result column="j_phone" jdbcType="VARCHAR" property="jPhone" />
-    <result column="j_addr" jdbcType="VARCHAR" property="jAddr" />
-    <result column="s_name" jdbcType="VARCHAR" property="sName" />
-    <result column="s_phone" jdbcType="VARCHAR" property="sPhone" />
-    <result column="s_addr" jdbcType="VARCHAR" property="sAddr" />
-    <result column="w_desc" jdbcType="VARCHAR" property="wDesc" />
-    <result column="w_type" jdbcType="VARCHAR" property="wType" />
-    <result column="w_weight" jdbcType="INTEGER" property="wWeight" />
-    <result column="w_bulk" jdbcType="INTEGER" property="wBulk" />
-    <result column="y_type" jdbcType="VARCHAR" property="yType" />
-    <result column="price" jdbcType="INTEGER" property="price" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="create_time" jdbcType="INTEGER" property="createTime" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, o_id, j_name, j_phone, j_addr, s_name, s_phone, s_addr, w_desc, w_type, w_weight, 
-    w_bulk, y_type, price, status, create_time
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from orderinfo
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from orderinfo
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.bs.logistics.bean.Orderinfo">
-    insert into orderinfo (id, o_id, j_name, 
-      j_phone, j_addr, s_name, 
-      s_phone, s_addr, w_desc, 
-      w_type, w_weight, w_bulk, 
-      y_type, price, status, 
-      create_time)
-    values (#{id,jdbcType=INTEGER}, #{oId,jdbcType=VARCHAR}, #{jName,jdbcType=VARCHAR}, 
-      #{jPhone,jdbcType=VARCHAR}, #{jAddr,jdbcType=VARCHAR}, #{sName,jdbcType=VARCHAR}, 
-      #{sPhone,jdbcType=VARCHAR}, #{sAddr,jdbcType=VARCHAR}, #{wDesc,jdbcType=VARCHAR}, 
-      #{wType,jdbcType=VARCHAR}, #{wWeight,jdbcType=INTEGER}, #{wBulk,jdbcType=INTEGER}, 
-      #{yType,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="com.bs.logistics.bean.Orderinfo">
-    insert into orderinfo
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="oId != null">
-        o_id,
-      </if>
-      <if test="jName != null">
-        j_name,
-      </if>
-      <if test="jPhone != null">
-        j_phone,
-      </if>
-      <if test="jAddr != null">
-        j_addr,
-      </if>
-      <if test="sName != null">
-        s_name,
-      </if>
-      <if test="sPhone != null">
-        s_phone,
-      </if>
-      <if test="sAddr != null">
-        s_addr,
-      </if>
-      <if test="wDesc != null">
-        w_desc,
-      </if>
-      <if test="wType != null">
-        w_type,
-      </if>
-      <if test="wWeight != null">
-        w_weight,
-      </if>
-      <if test="wBulk != null">
-        w_bulk,
-      </if>
-      <if test="yType != null">
-        y_type,
-      </if>
-      <if test="price != null">
-        price,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="oId != null">
-        #{oId,jdbcType=VARCHAR},
-      </if>
-      <if test="jName != null">
-        #{jName,jdbcType=VARCHAR},
-      </if>
-      <if test="jPhone != null">
-        #{jPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="jAddr != null">
-        #{jAddr,jdbcType=VARCHAR},
-      </if>
-      <if test="sName != null">
-        #{sName,jdbcType=VARCHAR},
-      </if>
-      <if test="sPhone != null">
-        #{sPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="sAddr != null">
-        #{sAddr,jdbcType=VARCHAR},
-      </if>
-      <if test="wDesc != null">
-        #{wDesc,jdbcType=VARCHAR},
-      </if>
-      <if test="wType != null">
-        #{wType,jdbcType=VARCHAR},
-      </if>
-      <if test="wWeight != null">
-        #{wWeight,jdbcType=INTEGER},
-      </if>
-      <if test="wBulk != null">
-        #{wBulk,jdbcType=INTEGER},
-      </if>
-      <if test="yType != null">
-        #{yType,jdbcType=VARCHAR},
-      </if>
-      <if test="price != null">
-        #{price,jdbcType=INTEGER},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bs.logistics.bean.Orderinfo">
-    update orderinfo
-    <set>
-      <if test="oId != null">
-        o_id = #{oId,jdbcType=VARCHAR},
-      </if>
-      <if test="jName != null">
-        j_name = #{jName,jdbcType=VARCHAR},
-      </if>
-      <if test="jPhone != null">
-        j_phone = #{jPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="jAddr != null">
-        j_addr = #{jAddr,jdbcType=VARCHAR},
-      </if>
-      <if test="sName != null">
-        s_name = #{sName,jdbcType=VARCHAR},
-      </if>
-      <if test="sPhone != null">
-        s_phone = #{sPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="sAddr != null">
-        s_addr = #{sAddr,jdbcType=VARCHAR},
-      </if>
-      <if test="wDesc != null">
-        w_desc = #{wDesc,jdbcType=VARCHAR},
-      </if>
-      <if test="wType != null">
-        w_type = #{wType,jdbcType=VARCHAR},
-      </if>
-      <if test="wWeight != null">
-        w_weight = #{wWeight,jdbcType=INTEGER},
-      </if>
-      <if test="wBulk != null">
-        w_bulk = #{wBulk,jdbcType=INTEGER},
-      </if>
-      <if test="yType != null">
-        y_type = #{yType,jdbcType=VARCHAR},
-      </if>
-      <if test="price != null">
-        price = #{price,jdbcType=INTEGER},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.bs.logistics.bean.Orderinfo">
-    update orderinfo
-    set o_id = #{oId,jdbcType=VARCHAR},
-      j_name = #{jName,jdbcType=VARCHAR},
-      j_phone = #{jPhone,jdbcType=VARCHAR},
-      j_addr = #{jAddr,jdbcType=VARCHAR},
-      s_name = #{sName,jdbcType=VARCHAR},
-      s_phone = #{sPhone,jdbcType=VARCHAR},
-      s_addr = #{sAddr,jdbcType=VARCHAR},
-      w_desc = #{wDesc,jdbcType=VARCHAR},
-      w_type = #{wType,jdbcType=VARCHAR},
-      w_weight = #{wWeight,jdbcType=INTEGER},
-      w_bulk = #{wBulk,jdbcType=INTEGER},
-      y_type = #{yType,jdbcType=VARCHAR},
-      price = #{price,jdbcType=INTEGER},
-      status = #{status,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+  
 </mapper>

@@ -20,7 +20,9 @@ public class DateUtils {
 		
 		yyyy_MM_dd("yyyy-MM-dd"),
 		
-		yyyy_MM_dd_HH_mm_ss("yyyy-MM-dd HH:mm:ss");
+		yyyy_MM_dd_HH_mm_ss("yyyy-MM-dd HH:mm:ss"),
+		
+		yyyyMMddHHmmssSSS("yyyyMMddHHmmssSSS");
 	
 		private String pattern;
 		public String getPattern() {

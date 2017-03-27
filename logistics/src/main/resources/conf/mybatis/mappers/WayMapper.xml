@@ -8,68 +8,48 @@
     <result column="create_time" jdbcType="INTEGER" property="createTime" />
     <result column="o_id" jdbcType="VARCHAR" property="oId" />
   </resultMap>
+  
   <sql id="Base_Column_List">
     id, w_no, addr, create_time, o_id
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  
+  <select id="select" parameterType="String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from way
-    where id = #{id,jdbcType=INTEGER}
+    where w_no = #{wNo,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  
+  <select id="selectList" parameterType="Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from way
+    where o_id = #{oId,jdbcType=VARCHAR}
+    order by create_time desc
+  </select>
+  
+  <select id="selectCount" parameterType="Map" resultType="int">
+    select 
+    count(*)
+    from way
+    where o_id = #{oId,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="delete" parameterType="String">
     delete from way
-    where id = #{id,jdbcType=INTEGER}
+    where w_no = #{wNo,jdbcType=VARCHAR}
   </delete>
+  
   <insert id="insert" parameterType="com.bs.tenement.bean.Way">
     insert into way (id, w_no, addr, 
       create_time, o_id)
     values (#{id,jdbcType=INTEGER}, #{wNo,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=INTEGER}, #{oId,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.bs.tenement.bean.Way">
-    insert into way
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="wNo != null">
-        w_no,
-      </if>
-      <if test="addr != null">
-        addr,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="oId != null">
-        o_id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="wNo != null">
-        #{wNo,jdbcType=VARCHAR},
-      </if>
-      <if test="addr != null">
-        #{addr,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=INTEGER},
-      </if>
-      <if test="oId != null">
-        #{oId,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bs.tenement.bean.Way">
+  
+  <update id="update" parameterType="com.bs.tenement.bean.Way">
     update way
     <set>
-      <if test="wNo != null">
-        w_no = #{wNo,jdbcType=VARCHAR},
-      </if>
       <if test="addr != null">
         addr = #{addr,jdbcType=VARCHAR},
       </if>
@@ -80,103 +60,7 @@
         o_id = #{oId,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where w_no = #{wNo,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bs.tenement.bean.Way">
-    update way
-    set w_no = #{wNo,jdbcType=VARCHAR},
-      addr = #{addr,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=INTEGER},
-      o_id = #{oId,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.bs.logistics.bean.Way">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="w_no" jdbcType="VARCHAR" property="wNo" />
-    <result column="addr" jdbcType="VARCHAR" property="addr" />
-    <result column="create_time" jdbcType="INTEGER" property="createTime" />
-    <result column="o_id" jdbcType="VARCHAR" property="oId" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, w_no, addr, create_time, o_id
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from way
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from way
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.bs.logistics.bean.Way">
-    insert into way (id, w_no, addr, 
-      create_time, o_id)
-    values (#{id,jdbcType=INTEGER}, #{wNo,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=INTEGER}, #{oId,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.bs.logistics.bean.Way">
-    insert into way
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="wNo != null">
-        w_no,
-      </if>
-      <if test="addr != null">
-        addr,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="oId != null">
-        o_id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="wNo != null">
-        #{wNo,jdbcType=VARCHAR},
-      </if>
-      <if test="addr != null">
-        #{addr,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=INTEGER},
-      </if>
-      <if test="oId != null">
-        #{oId,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bs.logistics.bean.Way">
-    update way
-    <set>
-      <if test="wNo != null">
-        w_no = #{wNo,jdbcType=VARCHAR},
-      </if>
-      <if test="addr != null">
-        addr = #{addr,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=INTEGER},
-      </if>
-      <if test="oId != null">
-        o_id = #{oId,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.bs.logistics.bean.Way">
-    update way
-    set w_no = #{wNo,jdbcType=VARCHAR},
-      addr = #{addr,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=INTEGER},
-      o_id = #{oId,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+  
 </mapper>

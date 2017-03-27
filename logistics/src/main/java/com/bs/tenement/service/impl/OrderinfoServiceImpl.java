@@ -6,41 +6,47 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bs.tenement.bean.Owner;
-import com.bs.tenement.dao.OwnerMapper;
-import com.bs.tenement.service.OwnerService;
+import com.bs.tenement.bean.Orderinfo;
+import com.bs.tenement.dao.OrderinfoMapper;
+import com.bs.tenement.service.OrderinfoService;
 
 @Service
-public class OwnerServiceImpl implements OwnerService{
+public class OrderinfoServiceImpl implements OrderinfoService{
 
 	@Autowired
-	private OwnerMapper ownMapper;
+	private OrderinfoMapper orderMapper;
 	
-	public int add(Owner t) {
+	@Override
+	public int add(Orderinfo t) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	public int update(Owner t) {
+	@Override
+	public int update(Orderinfo t) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	@Override
 	public int remove(String id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	public Owner get(String id) {
+	@Override
+	public Orderinfo get(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public List<Owner> getList(Map<String, Object> params) {
+	@Override
+	public List<Orderinfo> getList(Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public int getCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		return 0;

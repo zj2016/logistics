@@ -16,7 +16,7 @@ import com.bs.tenement.bean.Complain;
 import com.bs.tenement.query.Query;
 import com.bs.tenement.rest.Rest;
 import com.bs.tenement.rest.RestResult;
-import com.bs.tenement.service.ComplainService;
+import com.bs.tenement.service.OrderinfoService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 @Controller
@@ -24,7 +24,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 public class OwnerController {
 
 	@Autowired
-	private ComplainService comService;
+	private OrderinfoService comService;
 	
 	@RequestMapping(value = "/{page}", method = RequestMethod.GET)
 	public String page(@PathVariable("page") String page, String comId, ModelMap modelMap){
