@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.bs.tenement.bean.Tools;
 import com.bs.tenement.dao.ToolsMapper;
 import com.bs.tenement.service.ToolsService;
+import com.bs.tenement.utils.IdUtils;
 
 @Service
 public class ToolsServiceImpl implements ToolsService{
@@ -18,38 +19,33 @@ public class ToolsServiceImpl implements ToolsService{
 	
 	@Override
 	public int add(Tools t) {
-		// TODO Auto-generated method stub
-		return 0;
+		t.settNo(IdUtils.id());
+		return toolMapper.insert(t);
 	}
 
 	@Override
 	public int update(Tools t) {
-		// TODO Auto-generated method stub
-		return 0;
+		return toolMapper.update(t);
 	}
 
 	@Override
 	public int remove(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return toolMapper.delete(id);
 	}
 
 	@Override
 	public Tools get(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return toolMapper.select(id);
 	}
 
 	@Override
 	public List<Tools> getList(Map<String, Object> params) {
-		// TODO Auto-generated method stub
-		return null;
+		return toolMapper.selectList(params);
 	}
 
 	@Override
 	public int getCount(Map<String, Object> params) {
-		// TODO Auto-generated method stub
-		return 0;
+		return toolMapper.selectCount(params);
 	}
 
 }

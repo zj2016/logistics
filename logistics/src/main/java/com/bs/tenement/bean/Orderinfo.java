@@ -31,7 +31,7 @@ public class Orderinfo {
 
     private Integer status;
 
-    private Integer createTime;
+    private Long createTime;
 
     public Integer getId() {
         return id;
@@ -153,11 +153,11 @@ public class Orderinfo {
         this.status = status;
     }
 
-    public Integer getCreateTime() {
+    public Long getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Integer createTime) {
+    public void setCreateTime(Long createTime) {
         this.createTime = createTime;
     }
 }

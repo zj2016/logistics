@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.bs.tenement.bean.Orderinfo;
 import com.bs.tenement.dao.OrderinfoMapper;
 import com.bs.tenement.service.OrderinfoService;
+import com.bs.tenement.utils.DateUtils;
+import com.bs.tenement.utils.IdUtils;
 
 @Service
 public class OrderinfoServiceImpl implements OrderinfoService{
@@ -18,38 +20,35 @@ public class OrderinfoServiceImpl implements OrderinfoService{
 	
 	@Override
 	public int add(Orderinfo t) {
-		// TODO Auto-generated method stub
-		return 0;
+		t.setCreateTime(DateUtils.getNowDateTime());
+		t.setoId(IdUtils.waterId());
+		t.setStatus(0);
+		return orderMapper.insert(t);
 	}
 
 	@Override
 	public int update(Orderinfo t) {
-		// TODO Auto-generated method stub
-		return 0;
+		return orderMapper.update(t);
 	}
 
 	@Override
 	public int remove(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return orderMapper.delete(id);
 	}
 
 	@Override
 	public Orderinfo get(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return orderMapper.select(id);
 	}
 
 	@Override
 	public List<Orderinfo> getList(Map<String, Object> params) {
-		// TODO Auto-generated method stub
-		return null;
+		return orderMapper.selectList(params);
 	}
 
 	@Override
 	public int getCount(Map<String, Object> params) {
-		// TODO Auto-generated method stub
-		return 0;
+		return orderMapper.selectCount(params);
 	}
 
 }

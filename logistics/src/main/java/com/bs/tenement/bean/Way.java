@@ -7,7 +7,7 @@ public class Way {
 
     private String addr;
 
-    private Integer createTime;
+    private Long createTime;
 
     private String oId;
 
@@ -35,11 +35,11 @@ public class Way {
         this.addr = addr == null ? null : addr.trim();
     }
 
-    public Integer getCreateTime() {
+    public Long getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Integer createTime) {
+    public void setCreateTime(Long createTime) {
         this.createTime = createTime;
     }
 
