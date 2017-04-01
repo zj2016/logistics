@@ -19,7 +19,7 @@ import com.bs.tenement.interceptors.AuthorInterceptor;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.bs.student.controller","com.bs.student.interceptors"})
+@ComponentScan(basePackages = {"com.bs.tenement.controller","com.bs.tenement.interceptors"})
 public class WebMvcConfig extends WebMvcConfigurerAdapter{
 	
 	private final static String CONTENT_TYPE = "text/html;charset=utf-8";
@@ -35,10 +35,10 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter{
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(authorInterceptor).addPathPatterns("/**").excludePathPatterns("/admin/login","/admin/logout","/index","/student/login","/student/logout");
+		//registry.addInterceptor(authorInterceptor).addPathPatterns("/**").excludePathPatterns("/admin/login","/admin/logout","/index","/student/login","/student/logout");
 	}
 	
-	@Bean
+	/*@Bean
 	public VelocityConfigurer getVelocityConfig(){
 		Properties properties = new Properties();
 		properties.put("input.encoding", "UTF-8");
@@ -49,14 +49,14 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter{
 		velocityConfigurer.setResourceLoaderPath("WEB-INF/views/");
 		velocityConfigurer.setVelocityProperties(properties);
 		return velocityConfigurer;
-	}
+	}*/
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/static/**").addResourceLocations("/static/");
 	}
 	
-	@Bean
+	/*@Bean
 	public ViewResolver getViewResolver(){
 		
 		VelocityViewResolver velocityView = new VelocityViewResolver();
@@ -70,7 +70,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter{
 		velocityView.setNumberToolAttribute("numberTool");
 		velocityView.setContentType(CONTENT_TYPE);
 		return velocityView;
-	}
+	}*/
 	
 	
 }

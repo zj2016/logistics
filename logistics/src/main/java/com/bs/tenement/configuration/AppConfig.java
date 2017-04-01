@@ -24,7 +24,7 @@ import com.bs.tenement.interceptors.AuthorInterceptor;
 
 
 @Configuration
-@ComponentScan(basePackages = {"com.bs.student.service.impl"})
+@ComponentScan(basePackages = {"com.bs.tenement.service.impl"})
 @EnableTransactionManagement
 @PropertySource(value = "classpath:conf/mybatis/system.properties")
 public class AppConfig implements EnvironmentAware{
@@ -73,7 +73,7 @@ public class AppConfig implements EnvironmentAware{
 	public MapperScannerConfigurer mapperScannerConfigurer(){
 		MapperScannerConfigurer mapper = new MapperScannerConfigurer();
 		mapper.setSqlSessionFactoryBeanName("sqlSessionFactory");
-		mapper.setBasePackage("com.bs.student.dao");
+		mapper.setBasePackage("com.bs.tenement.dao");
 		
 		return mapper;
 	}

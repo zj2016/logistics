@@ -11,7 +11,6 @@ import com.bs.tenement.bean.Orderinfo;
 import com.bs.tenement.query.Query;
 import com.bs.tenement.rest.RestResult;
 import com.bs.tenement.service.OrderinfoService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 
 @RestController
 @RequestMapping("/order")
@@ -22,7 +21,7 @@ public class OrderController {
 	
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public RestResult list(Query query) throws JsonProcessingException{
+	public RestResult list(Query query){
 		
 		List<Orderinfo> orderList = orderService.getList(query.toMap());
 		

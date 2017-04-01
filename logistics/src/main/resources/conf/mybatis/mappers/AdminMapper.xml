@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.bs.student.dao.AdminMapper">
-  <resultMap id="BaseResultMap" type="com.bs.student.bean.Admin">
+<mapper namespace="com.bs.tenement.dao.AdminMapper">
+  <resultMap id="BaseResultMap" type="com.bs.tenement.bean.Admin">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -25,13 +25,13 @@
     delete from admin
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.bs.student.bean.Admin">
+  <insert id="insert" parameterType="com.bs.tenement.bean.Admin">
     insert into admin (id, `name`, password
       )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.bs.student.bean.Admin">
+  <insert id="insertSelective" parameterType="com.bs.tenement.bean.Admin">
     insert into admin
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -56,7 +56,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bs.student.bean.Admin">
+  <update id="updateByPrimaryKeySelective" parameterType="com.bs.tenement.bean.Admin">
     update admin
     <set>
       <if test="name != null">
@@ -68,7 +68,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bs.student.bean.Admin">
+  <update id="updateByPrimaryKey" parameterType="com.bs.tenement.bean.Admin">
     update admin
     set `name` = #{name,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR}
