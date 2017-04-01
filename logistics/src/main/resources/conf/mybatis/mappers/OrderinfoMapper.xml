@@ -48,8 +48,8 @@
         and o_id = #{oId,jdbcType=VARCHAR}
       </if>
     </where>
-    limit #{offset}, #{limit}
     order by create_time desc
+    limit #{offset}, #{limit}
   </select>
   
   <select id="selectCount" parameterType="Map" resultType="int">

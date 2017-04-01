@@ -24,8 +24,8 @@
     select 
     <include refid="Base_Column_List" />
     from way
-    where o_id = #{oId,jdbcType=VARCHAR}
     order by create_time desc
+    where o_id = #{oId,jdbcType=VARCHAR}
   </select>
   
   <select id="selectCount" parameterType="Map" resultType="int">

@@ -30,8 +30,8 @@
         y_type = #{yType,jdbcType=VARCHAR}
       </if>
     </where>
-    limit #{offset}, #{limit}
     order by max_weight desc
+    limit #{offset}, #{limit}
   </select>
   
   <select id="selectCount" parameterType="Map" resultType="int">
