@@ -35,7 +35,7 @@ public class DateUtils {
 	}
 	
 	public static Long getNowDateTime(){
-		return System.currentTimeMillis();
+		return System.currentTimeMillis()/1000;
 	}
 	
 	public static String getNowDateTimeYMDHMS(){
@@ -56,13 +56,13 @@ public class DateUtils {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		return date.getTime();
+		return date.getTime()/1000;
 	}
 	
 	public static String parseLongToString(Long dateTime, DatePattern pattern){
 		
 		if(dateTime == null) return "";
-		Date date = new Date(dateTime);
+		Date date = new Date(dateTime * 1000);
 		
 		return DateFormatUtils.format(date, pattern.getPattern());
 	}
