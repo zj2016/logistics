@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bs.tenement.bean.Orderinfo;
+import com.bs.tenement.query.OrderQuery;
 import com.bs.tenement.query.Query;
 import com.bs.tenement.rest.RestResult;
 import com.bs.tenement.service.OrderinfoService;
@@ -21,11 +22,11 @@ public class OrderController {
 	
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public RestResult list(Query query){
+	public RestResult list(OrderQuery query){
 		
 		List<Orderinfo> orderList = orderService.getList(query.toMap());
-		
-		return RestResult.success().setResponse(orderList);
+		int count = orderService.getCount(query.toMap());
+		return RestResult.success().setResponse(orderList).setInfo(""+count);
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)

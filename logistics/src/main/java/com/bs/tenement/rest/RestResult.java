@@ -61,4 +61,11 @@ public class RestResult {
 		return new RestResult(SUCCESS, "success");
 	}
 
+	@Override
+	public String toString() {
+		return "RestResult [code=" + code + ", info=" + info + ", response=" + response + "]";
+	}
+
+	
+	
 }
