@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bs.tenement.bean.Tools;
 import com.bs.tenement.query.ToolsQuery;
 import com.bs.tenement.rest.RestResult;
+import com.bs.tenement.rest.RestResultList;
 import com.bs.tenement.service.ToolsService;
 
 @RestController

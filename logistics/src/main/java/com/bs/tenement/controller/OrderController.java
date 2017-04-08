@@ -1,6 +1,8 @@
 package com.bs.tenement.controller;
 
 import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +13,7 @@ import com.bs.tenement.bean.Orderinfo;
 import com.bs.tenement.query.OrderQuery;
 import com.bs.tenement.query.Query;
 import com.bs.tenement.rest.RestResult;
+import com.bs.tenement.rest.RestResultList;
 import com.bs.tenement.service.OrderinfoService;
 
 @RestController
@@ -23,7 +26,9 @@ public class OrderController {
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public RestResult list(OrderQuery query){
-		
+		if(StringUtils.isBlank(query.getyType()) || "全部".equals(query.getyType())){
+			query.setyType(null);
+		}
 		List<Orderinfo> orderList = orderService.getList(query.toMap());
 		int count = orderService.getCount(query.toMap());
 		return RestResult.success().setResponse(orderList).setInfo(""+count);
