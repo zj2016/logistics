@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bs.tenement.dao.GoodsMapper">
+  <resultMap id="BaseResultMap" type="com.bs.tenement.bean.Goods">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="w_type" jdbcType="VARCHAR" property="wType" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, w_type
+  </sql>
+  
+  <select id="select" parameterType="int" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where id = #{id}
+  </select>
+  
+  <select id="selectList" parameterType="Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+  </select>
+  
+  <select id="selectCount" parameterType="Map" resultType="int">
+    select 
+    count(*)
+    from goods
+  </select>
+  
+  <delete id="delete" parameterType="int">
+    delete from goods
+    where id = #{id}
+  </delete>
+  
+  <insert id="insert" parameterType="com.bs.tenement.bean.Goods">
+    insert into goods (id, w_type)
+    values (#{id,jdbcType=INTEGER}, #{wType,jdbcType=VARCHAR})
+  </insert>
+  
+  <update id="update" parameterType="com.bs.tenement.bean.Goods">
+    update goods
+    <set>
+      <if test="wType != null">
+        w_type = #{wType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where  id = #{id}
+  </update>
+  
+</mapper>
