@@ -25,8 +25,8 @@ public class FileUploadController {
 	@RequestMapping
 	public RestResult upload(@RequestParam("img") MultipartFile file, HttpServletRequest request){
 		
-		//File folder = new File("/home/zhangjian/img");
-		File folder = new File("C://bs/img");
+		File folder = new File("/home/img");
+		//File folder = new File("C://bs/img");
 		if(!folder.exists()){
 			folder.mkdirs();
 		}

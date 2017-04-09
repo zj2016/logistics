@@ -12,6 +12,8 @@ public class Tools {
     private Integer maxWeight;
 
     private Integer maxBulk;
+    
+    private String img;
 
     public Integer getId() {
         return id;
@@ -60,4 +62,14 @@ public class Tools {
     public void setMaxBulk(Integer maxBulk) {
         this.maxBulk = maxBulk;
     }
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+    
+    
 }

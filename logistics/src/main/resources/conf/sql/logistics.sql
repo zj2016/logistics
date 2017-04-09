@@ -47,6 +47,7 @@ CREATE TABLE tools (
   num int not null default 1 comment '数量',
   max_weight int not null comment '最大重量',
   max_bulk int not null comment '最大体积',
+  img varchar(1000) comment '图片',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='运输工具信息';
 

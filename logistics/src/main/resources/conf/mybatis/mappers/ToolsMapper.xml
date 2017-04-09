@@ -5,13 +5,14 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="t_no" jdbcType="VARCHAR" property="tNo" />
     <result column="y_type" jdbcType="VARCHAR" property="yType" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
     <result column="num" jdbcType="INTEGER" property="num" />
     <result column="max_weight" jdbcType="INTEGER" property="maxWeight" />
     <result column="max_bulk" jdbcType="INTEGER" property="maxBulk" />
   </resultMap>
   
   <sql id="Base_Column_List">
-    id, t_no, y_type, num, max_weight, max_bulk
+    id, t_no, y_type, num, max_weight, max_bulk, img
   </sql>
   
   <select id="select" parameterType="String" resultMap="BaseResultMap">
@@ -52,11 +53,11 @@
   
   <insert id="insert" parameterType="com.bs.tenement.bean.Tools">
     insert into tools (id, t_no, y_type, 
-      num, max_weight, max_bulk
+      num, max_weight, max_bulk, img
       )
     values (#{id,jdbcType=INTEGER}, #{tNo,jdbcType=VARCHAR}, #{yType,jdbcType=VARCHAR}, 
-      #{num,jdbcType=INTEGER}, #{maxWeight,jdbcType=INTEGER}, #{maxBulk,jdbcType=INTEGER}
-      )
+      #{num,jdbcType=INTEGER}, #{maxWeight,jdbcType=INTEGER}, #{maxBulk,jdbcType=INTEGER},
+      #{img,jdbcType=VARCHAR})
   </insert>
   
   <update id="update" parameterType="com.bs.tenement.bean.Tools">
@@ -73,6 +74,9 @@
       </if>
       <if test="maxBulk != null">
         max_bulk = #{maxBulk,jdbcType=INTEGER},
+      </if>
+      <if test="maxBulk != null">
+        img = #{img,jdbcType=VARCHAR},
       </if>
     </set>
     where t_no = #{tNo,jdbcType=VARCHAR}
