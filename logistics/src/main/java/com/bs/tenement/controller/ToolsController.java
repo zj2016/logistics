@@ -21,6 +21,7 @@ public class ToolsController {
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public RestResult list(ToolsQuery query){
+		query.setLimit(100);
 		return RestResult.success().setResponse(toolService.getList(query.toMap()));
 	}
 	
@@ -50,7 +51,7 @@ public class ToolsController {
 		return RestResult.error("添加失败");
 	}
 	
-	@RequestMapping(value = "/rm/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/rm/{id}", method = RequestMethod.GET)
 	public RestResult remove(@PathVariable("id") String id){
 		int result = toolService.remove(id);
 		if(result > 0){

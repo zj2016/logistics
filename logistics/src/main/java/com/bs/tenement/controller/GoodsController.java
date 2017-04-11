@@ -19,6 +19,7 @@ public class GoodsController {
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public RestResult list(Query query){
+		query.setLimit(100);
 		return RestResult.success().setResponse(goodsService.getList(query.toMap()));
 	}
 	
