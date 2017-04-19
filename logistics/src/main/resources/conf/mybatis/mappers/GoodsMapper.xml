@@ -29,7 +29,7 @@
     from goods
   </select>
   
-  <delete id="delete" parameterType="int">
+  <delete id="deleteint" parameterType="int">
     delete from goods
     where id = #{id}
   </delete>

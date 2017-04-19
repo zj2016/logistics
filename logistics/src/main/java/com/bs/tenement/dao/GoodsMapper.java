@@ -4,4 +4,6 @@ import com.bs.tenement.bean.Goods;
 
 public interface GoodsMapper extends BaseMapper<Goods>{
 
+	int deleteint(Integer id);
+	
 }

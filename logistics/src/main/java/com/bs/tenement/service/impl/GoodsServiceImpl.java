@@ -29,8 +29,7 @@ public class GoodsServiceImpl implements GoodsService{
 
 	@Override
 	public int remove(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return goodsMapper.deleteint(Integer.valueOf(id));
 	}
 
 	@Override
