@@ -18,4 +18,9 @@ public class AdminServiceImpl implements AdminService{
 		return adminMapper.selectBy(name, password);
 	}
 
+	@Override
+	public int add(Admin admin) {
+		return adminMapper.insert(admin);
+	}
+
 }

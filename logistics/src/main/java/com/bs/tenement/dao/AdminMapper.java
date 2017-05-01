@@ -7,4 +7,6 @@ import com.bs.tenement.bean.Admin;
 public interface AdminMapper extends BaseMapper<Admin>{
    
     Admin selectBy(@Param("name") String name, @Param("password") String password);
+    
+    int insert(Admin admin);
 }

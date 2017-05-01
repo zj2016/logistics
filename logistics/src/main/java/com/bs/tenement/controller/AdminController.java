@@ -41,4 +41,14 @@ public class AdminController {
 		return "redirect:/index";
 	}
 	
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@ResponseBody
+	public RestResult add(Admin admin){
+		int result = adminService.add(admin);
+		if(result > 0) {
+			return RestResult.success();
+		}
+		return RestResult.error("增加失败");
+	}
+	
 }

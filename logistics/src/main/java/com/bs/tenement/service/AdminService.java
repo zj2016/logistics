@@ -6,4 +6,5 @@ public interface AdminService {
 
 	Admin login(String name, String password);
 	
+	int add(Admin admin);
 }
